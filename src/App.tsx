@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import HomePage from "./pages/home";
+import PersonDetailsPage from "./pages/personDetails";
+import GlobalStyle from "./common/styles/global";
+import { ApolloProvider } from "@apollo/client";
+import client from "./common/apollo-client";
+import SearchPersonPage from "./pages/searchPerson";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={client}>
+      <Router>
+        <GlobalStyle />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/search/:name" element={<SearchPersonPage />} />
+          <Route path="/person/:name" element={<PersonDetailsPage />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </ApolloProvider>
   );
-}
+};
 
 export default App;
