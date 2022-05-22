@@ -1,7 +1,6 @@
 import express from  'express';
 import { graphqlHTTP } from 'express-graphql';
 import { SERVER_PORT } from '../common/constants';
-import fetch from 'node-fetch';
 import schema from "./schema";
 import bodyParser from 'body-parser';
 import cors from "cors"

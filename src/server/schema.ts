@@ -1,5 +1,3 @@
-// FROM SWAPI API DOCS https://github.com/graphql/swapi-graphql/blob/master/src/schema/types/person.js
-
 import {
   GraphQLObjectType,
   GraphQLString,
