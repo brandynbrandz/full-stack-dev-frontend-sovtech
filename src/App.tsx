@@ -8,6 +8,7 @@ import GlobalStyle from "./common/styles/global";
 import { ApolloProvider } from "@apollo/client";
 import client from "./common/apollo-client";
 import SearchPersonPage from "./pages/searchPerson";
+import TestingHome from "./pages/TestingHome";
 
 const App: React.FC = () => {
   return (
@@ -16,9 +17,10 @@ const App: React.FC = () => {
         <GlobalStyle />
         <Navbar />
         <Routes>
-          <Route path="/" element={<HomePage />} />
           <Route path="/search/:name" element={<SearchPersonPage />} />
+          <Route path="/1" element={<TestingHome />} />
           <Route path="/person/:name" element={<PersonDetailsPage />} />
+          <Route path="/" element={<HomePage />} />
         </Routes>
         <Footer />
       </Router>

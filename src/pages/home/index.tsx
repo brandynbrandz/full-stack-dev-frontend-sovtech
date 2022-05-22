@@ -6,6 +6,7 @@ import { useQuery } from "@apollo/client";
 import SearchForm from "../../components/SearchForm";
 import { useState } from "react";
 import PaginationComp from "../../components/Pagination";
+import Banner from "../../components/Banner";
 
 const HomePage: React.FC = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -34,6 +35,7 @@ const HomePage: React.FC = () => {
   return (
     <>
       <SearchForm />
+      <Banner/>
       <HomePageContainer>
         {loading ? (
           <>Loading</>
