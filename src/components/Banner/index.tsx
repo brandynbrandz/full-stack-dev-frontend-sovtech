@@ -1,11 +1,10 @@
-import { Box, Container, Flex, Heading, Image } from '@chakra-ui/react'
+import { Box, Center, Container, Flex, Heading, Image } from '@chakra-ui/react'
 import React from 'react'
 
 const Banner = () => {
   return (
-    <Box>
         <Container maxWidth="container.xl">
-            <Box>
+            <Flex justifyContent="center">
                 <Flex alignItems="center" py="20" flexDirection="row">
                     <Box>
                         <Heading>
@@ -15,11 +14,10 @@ const Banner = () => {
                             Get to know the Star Wars Characters and their details which include: Name, height, homeworld, mass
                         </Box>
                     </Box>
-                    <Box width="100%"><Image w="100" src={"https://images.pexels.com/photos/3526022/pexels-photo-3526022.jpeg?auto=compress&cs=tinysrgb&w=443.6&h=197.1&dpr=1"} alt="banner-img"></Image></Box>
+                    <Box width="60%"><Image w="100" src={"https://images.pexels.com/photos/3526022/pexels-photo-3526022.jpeg?auto=compress&cs=tinysrgb&w=443.6&h=197.1&dpr=1"} alt="banner-img" borderRadius="md"></Image></Box>
                 </Flex>
-            </Box>
+            </Flex>
         </Container>    
-    </Box>
   )
 }
 

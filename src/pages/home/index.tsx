@@ -1,12 +1,11 @@
 import React from "react";
 import PeopleGrid from "../../components/PeopleGrid";
-import { HomePageContainer } from "./styles";
 import { GET_PEOPLE_QUERY, PEOPLE_COUNT } from "../../schemas";
 import { useQuery } from "@apollo/client";
-import SearchForm from "../../components/SearchForm";
 import { useState } from "react";
 import PaginationComp from "../../components/Pagination";
 import Banner from "../../components/Banner";
+import { Center, Container, Text } from "@chakra-ui/react";
 
 const HomePage: React.FC = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -18,11 +17,12 @@ const HomePage: React.FC = () => {
   const { loading, error, data } = useQuery(GET_PEOPLE_QUERY, {
     variables: { pageNumber },
   });
-  const characterLimit = 10
+  const characterLimit = 10;
   const increaseHandler = () => {
     if (
       pageNumber <
-      (dataPagination && Math.ceil(dataPagination.GetAllPeopleCount / characterLimit))
+      (dataPagination &&
+        Math.ceil(dataPagination.GetAllPeopleCount / characterLimit))
     ) {
       setPageNumber(pageNumber + 1);
     }
@@ -34,25 +34,46 @@ const HomePage: React.FC = () => {
   };
   return (
     <>
-      <SearchForm />
-      <Banner/>
-      <HomePageContainer>
+      
+      <Banner />
+      <Container maxW="container.xl" mt={10} mb={7}>
         {loading ? (
-          <>Loading</>
+          <Center>Loading</Center>
         ) : error ? (
           <>Error: {console.log(error)}</>
         ) : (
           <>
-            <PeopleGrid people={data.People} />
-            {data.People.length === 0 && <h3>No Characters found</h3>}
             {loadingPagination ? (
-              <>Loading</>
+              <Center>Loading</Center>
             ) : errorPagination ? (
               <>Error: {console.log(errorPagination)}</>
             ) : (
-              <><h3>{`${dataPagination.GetAllPeopleCount} Characters`}</h3></>
+              <Center>
+                <Text
+                  ml={2}
+                  mb={3}
+                  textTransform="uppercase"
+                  fontSize="xl"
+                  fontWeight="bold"
+                  color="green.800"
+                >{`${dataPagination.GetAllPeopleCount} Characters found`}</Text>
+              </Center>
             )}
-            <h3>{`Page ${pageNumber} out of ${Math.ceil(dataPagination.GetAllPeopleCount / characterLimit)}`}</h3>
+            <PeopleGrid people={data.People} />
+            {data.People.length === 0 && (
+              <Center>
+                <Text
+                  ml={2}
+                  textTransform="uppercase"
+                  fontSize="xl"
+                  fontWeight="bold"
+                  color="red.800"
+                >
+                  No Characters found
+                </Text>
+              </Center>
+            )}
+
             <PaginationComp
               page={pageNumber}
               maxPages={
@@ -62,10 +83,19 @@ const HomePage: React.FC = () => {
               onClickIncreaser={increaseHandler}
               onClickReducer={reduceHandler}
               setPageNumber={setPageNumber}
-            />
+              pageNumber={pageNumber}
+              />
+              <Center >
+                <Text>
+                  {dataPagination &&
+                    `Page ${pageNumber} of ${Math.ceil(
+                      dataPagination.GetAllPeopleCount / characterLimit
+                    )}`}
+                </Text>
+              </Center>
           </>
         )}
-      </HomePageContainer>
+      </Container>
     </>
   );
 };

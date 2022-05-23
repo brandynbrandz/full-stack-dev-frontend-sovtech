@@ -10,7 +10,9 @@ export default createGlobalStyle`
          outline: none !important;
         }
     }
-
+ #root {
+  min-height: 100vh;
+ }
 #html {
     margin: 0 auto;
 }

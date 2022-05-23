@@ -20,8 +20,3 @@ export const PersonGridInfo = styled.div`
   padding: 20px 30px 30px;
 `;
 
-export const PersonGridParagraph = styled.p`
-  color: #252e48;
-  font-size: 18px;
-  line-height: 24px;
-`;

@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client";
+import { Badge, Box, Center, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import PaginationComp from "../../components/Pagination";
@@ -18,11 +19,12 @@ const SearchPersonPage = () => {
   } = useQuery(PERSON_SEARCH_COUNT, {
     variables: { name },
   });
-  const characterLimit = 10
+  const characterLimit = 10;
   const increaseHandler = () => {
     if (
       pageNumber <
-      (dataPagination && Math.ceil(dataPagination.GetSearchedPeopleCount / characterLimit))
+      (dataPagination &&
+        Math.ceil(dataPagination.GetSearchedPeopleCount / characterLimit))
     ) {
       setPageNumber(pageNumber + 1);
     }
@@ -33,43 +35,72 @@ const SearchPersonPage = () => {
     }
   };
   return (
-    <div>
-      SearchPersonPage {name}
-      <div>
+    <Box>
+      <Center>
+        <Badge>Search Term ({name})</Badge>
+      </Center>
+      <Box>
         {loading ? (
-          <>Loading</>
+          <Center>Loading</Center>
         ) : error ? (
           <>Error: {console.log(error)}</>
         ) : (
           <>
-            <PeopleGrid people={data.SearchPersonByName} />
-            {data.SearchPersonByName.length === 0 && (
-              <h3>No characters found</h3>
-            )}
             {loadingPagination ? (
               <>Loading</>
             ) : errorPagination ? (
               <>Error: {console.log(errorPagination)}</>
             ) : (
-              dataPagination.GetSearchedPeopleCount
+              <Center>
+                <Text
+                  ml={2}
+                  textTransform="uppercase"
+                  fontSize="xl"
+                  fontWeight="bold"
+                  color="green.800"
+                >{`${dataPagination.GetSearchedPeopleCount} Characters found`}</Text>
+              </Center>
             )}
-            <h3>{dataPagination && `Page ${pageNumber} out of ${Math.ceil(
-              dataPagination.GetSearchedPeopleCount / 10
-            )}`}</h3>
+            <PeopleGrid people={data.SearchPersonByName} />
+            {data.SearchPersonByName.length === 0 && (
+              <Center>
+                <Text
+                  ml={2}
+                  textTransform="uppercase"
+                  fontSize="xl"
+                  fontWeight="bold"
+                  color="red.800"
+                >
+                  No Characters found
+                </Text>
+              </Center>
+            )}
+
             <PaginationComp
               page={pageNumber}
               maxPages={
                 dataPagination &&
-                Math.ceil(dataPagination.GetSearchedPeopleCount / characterLimit)
+                Math.ceil(
+                  dataPagination.GetSearchedPeopleCount / characterLimit
+                )
               }
               onClickIncreaser={increaseHandler}
               onClickReducer={reduceHandler}
               setPageNumber={setPageNumber}
+              pageNumber={pageNumber}
             />
+            <Center mb={7}>
+              <Text>
+                {dataPagination && data.SearchPersonByName.length > 1 &&
+                  `Page ${pageNumber} of ${Math.ceil(
+                    dataPagination.GetSearchedPeopleCount / 10
+                  )}`}
+              </Text>
+            </Center>
           </>
         )}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 
