@@ -53,7 +53,7 @@ const SearchPersonPage = () => {
             ) : (
               dataPagination.GetSearchedPeopleCount
             )}
-            <h3>{`Page ${pageNumber} out of ${Math.ceil(
+            <h3>{dataPagination && `Page ${pageNumber} out of ${Math.ceil(
               dataPagination.GetSearchedPeopleCount / 10
             )}`}</h3>
             <PaginationComp
