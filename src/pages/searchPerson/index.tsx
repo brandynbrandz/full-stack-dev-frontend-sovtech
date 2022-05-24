@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import { Badge, Box, Center, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import PeopleSkeleton from "../../components/LoadingSkeleton/PeopleSkeleton";
 import PaginationComp from "../../components/Pagination";
 import PeopleGrid from "../../components/PeopleGrid";
 import { PERSON_SEARCH_COUNT, SEARCH_PERSON_QUERY } from "../../schemas";
@@ -37,11 +38,11 @@ const SearchPersonPage = () => {
   return (
     <Box>
       <Center>
-        <Badge>Search Term ({name})</Badge>
+        <Badge mb={7}>Search Term ({name})</Badge>
       </Center>
       <Box>
         {loading ? (
-          <Center>Loading</Center>
+          <Center><PeopleSkeleton/></Center>
         ) : error ? (
           <>Error: {console.log(error)}</>
         ) : (

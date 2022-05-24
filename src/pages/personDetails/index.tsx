@@ -15,6 +15,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
+import PersonDetailsSkeleton from "../../components/LoadingSkeleton/PersonDetailsSkeleton";
 
 const PersonDetailsPage: React.FC = () => {
   const { name } = useParams();
@@ -29,7 +30,7 @@ const PersonDetailsPage: React.FC = () => {
       <Container maxW="container.xl" mt={10} mb={7}>
         <Center>
           {loading ? (
-            <>Loading</>
+            <><PersonDetailsSkeleton/></>
           ) : error ? (
             <>Error: {console.log(error)}</>
           ) : (

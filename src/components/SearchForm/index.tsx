@@ -5,9 +5,9 @@ import {
   Button,
   Container,
   Flex,
-  FormControl,
   Modal,
   ModalContent,
+  ModalHeader,
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -20,29 +20,34 @@ const SearchForm: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Container maxW="xl">   
+    <Container maxW="xl">
       <Button onClick={onOpen}>Search</Button>
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-        <Flex justifyContent="center">
-        <Formik initialValues={{ searchTerm: "" }} onSubmit={handleSubmit}>
-          <Form>
-            <Flex alignItems="center">
+          <ModalHeader>
+            <Flex justifyContent="center">
+              <Formik
+                initialValues={{ searchTerm: "" }}
+                onSubmit={handleSubmit}
+              >
+                <Form>
+                  <Flex alignItems="center">
+                    <Field
+                      name="searchTerm"
+                      type="text"
+                      placeholder="Search a character"
+                      required
+                    />
 
-            <FormControl>
-              <Field
-                name="searchTerm"
-                type="text"
-                placeholder="Search a character"
-                required
-                />
-            </FormControl>
-            <Button type="submit" onClick={onClose}>Search</Button>
-                </Flex>
-          </Form>
-        </Formik>
-      </Flex>
+                    <Button type="submit" onClick={onClose}>
+                      Search
+                    </Button>
+                  </Flex>
+                </Form>
+              </Formik>
+            </Flex>
+          </ModalHeader>
         </ModalContent>
       </Modal>
     </Container>

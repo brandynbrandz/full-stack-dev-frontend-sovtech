@@ -6,6 +6,7 @@ import { useState } from "react";
 import PaginationComp from "../../components/Pagination";
 import Banner from "../../components/Banner";
 import { Center, Container, Text } from "@chakra-ui/react";
+import PeopleSkeleton from "../../components/LoadingSkeleton/PeopleSkeleton";
 
 const HomePage: React.FC = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -38,7 +39,7 @@ const HomePage: React.FC = () => {
       <Banner />
       <Container maxW="container.xl" mt={10} mb={7}>
         {loading ? (
-          <Center>Loading</Center>
+          <Center><PeopleSkeleton/></Center>
         ) : error ? (
           <>Error: {console.log(error)}</>
         ) : (
