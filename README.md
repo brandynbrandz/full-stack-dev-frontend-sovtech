@@ -20,4 +20,4 @@
 
 ### Backend
 
-- Find the frontend repo here https://github.com/brandynbrandz/full-stack-dev-frontend-sovtech
+- Find the Backend repo here https://github.com/brandynbrandz/full-stack-dev-task-backend
