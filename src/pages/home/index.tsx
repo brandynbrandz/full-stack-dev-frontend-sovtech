@@ -1,6 +1,6 @@
 import React from "react";
 import PeopleGrid from "../../components/PeopleGrid";
-import { GET_PEOPLE_QUERY, PEOPLE_COUNT } from "../../schemas";
+import { GET_ALL_PEOPLE_QUERY } from "../../schemas";
 import { useQuery } from "@apollo/client";
 import { useState } from "react";
 import PaginationComp from "../../components/Pagination";
@@ -10,20 +10,15 @@ import PeopleSkeleton from "../../components/LoadingSkeleton/PeopleSkeleton";
 
 const HomePage: React.FC = () => {
   const [pageNumber, setPageNumber] = useState(1);
-  const {
-    loading: loadingPagination,
-    error: errorPagination,
-    data: dataPagination,
-  } = useQuery(PEOPLE_COUNT);
-  const { loading, error, data } = useQuery(GET_PEOPLE_QUERY, {
+  const { loading, error, data } = useQuery(GET_ALL_PEOPLE_QUERY, {
     variables: { pageNumber },
   });
   const characterLimit = 10;
   const increaseHandler = () => {
     if (
       pageNumber <
-      (dataPagination &&
-        Math.ceil(dataPagination.GetAllPeopleCount / characterLimit))
+      (data &&
+        Math.ceil(data.People.count / characterLimit))
     ) {
       setPageNumber(pageNumber + 1);
     }
@@ -44,11 +39,7 @@ const HomePage: React.FC = () => {
           <>Error: {console.log(error)}</>
         ) : (
           <>
-            {loadingPagination ? (
-              <Center>Loading</Center>
-            ) : errorPagination ? (
-              <>Error: {console.log(errorPagination)}</>
-            ) : (
+ 
               <Center>
                 <Text
                   ml={2}
@@ -57,11 +48,10 @@ const HomePage: React.FC = () => {
                   fontSize="xl"
                   fontWeight="bold"
                   color="green.800"
-                >{`${dataPagination.GetAllPeopleCount} Characters found`}</Text>
+                >{`${data.People.count} Characters found`}</Text>
               </Center>
-            )}
-            <PeopleGrid people={data.People} />
-            {data.People.length === 0 && (
+            <PeopleGrid people={data.People.results} />
+            {data.People.results.length === 0 && (
               <Center>
                 <Text
                   ml={2}
@@ -78,19 +68,21 @@ const HomePage: React.FC = () => {
             <PaginationComp
               page={pageNumber}
               maxPages={
-                dataPagination &&
-                Math.ceil(dataPagination.GetAllPeopleCount / 10)
+                data &&
+                Math.ceil(data.People.count / characterLimit)
               }
               onClickIncreaser={increaseHandler}
               onClickReducer={reduceHandler}
               setPageNumber={setPageNumber}
               pageNumber={pageNumber}
+              next={data && data.People.next}
+              previous={data && data.People.previous}
               />
               <Center >
                 <Text>
-                  {dataPagination &&
+                  {data &&
                     `Page ${pageNumber} of ${Math.ceil(
-                      dataPagination.GetAllPeopleCount / characterLimit
+                      data.People.count / characterLimit
                     )}`}
                 </Text>
               </Center>

@@ -1,5 +1,5 @@
 import React from "react";
-import { SEARCH_PERSON_QUERY } from "../../schemas";
+import { GET_PERSON_QUERY } from "../../schemas";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { Person } from "../../common/types";
@@ -20,11 +20,10 @@ import PersonDetailsSkeleton from "../../components/LoadingSkeleton/PersonDetail
 const PersonDetailsPage: React.FC = () => {
   const { name } = useParams();
   const [pageNumber, setPageNumber] = useState(1);
-  const { loading, error, data } = useQuery(SEARCH_PERSON_QUERY, {
+  const { loading, error, data } = useQuery(GET_PERSON_QUERY, {
     variables: { name, pageNumber },
   });
   const navigate = useNavigate();
-
   return (
     <>
       <Container maxW="container.xl" mt={10} mb={7}>
@@ -34,7 +33,7 @@ const PersonDetailsPage: React.FC = () => {
           ) : error ? (
             <>Error: {console.log(error)}</>
           ) : (
-            data.SearchPersonByName.map((person: Person, key: number) => (
+            data.Person.results.map((person: Person, key: number) => (
               <Box
                 p="10"
                 maxW="60%"

@@ -10,6 +10,8 @@ interface Iprops {
   onClickIncreaser: () => void;
   setPageNumber: React.Dispatch<React.SetStateAction<number>>;
   pageNumber: number;
+  next: string;
+  previous: string;
 }
 
 const PaginationLine = styled("h1")<{ active: boolean }>`
@@ -39,7 +41,7 @@ const PaginationComp: React.FC<Iprops> = (Props: Iprops) => {
     <Container>
       <Box>
         <Flex justifyContent="center" p={2}>
-          <Button onClick={Props.onClickReducer}>{<ChevronLeftIcon />}</Button>
+          {Props.previous != null && <Button onClick={Props.onClickReducer}>{<ChevronLeftIcon />}</Button>}
           {pages.map((page, key) => (
             <PaginationLine
               key={key}
@@ -49,9 +51,9 @@ const PaginationComp: React.FC<Iprops> = (Props: Iprops) => {
               {page}
             </PaginationLine>
           ))}
-          <Button onClick={Props.onClickIncreaser}>
+          {Props.next != null && <Button onClick={Props.onClickIncreaser}>
             {<ChevronRightIcon />}
-          </Button>
+          </Button>}
         </Flex>
       </Box>
     </Container>
