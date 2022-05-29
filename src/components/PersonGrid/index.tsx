@@ -2,7 +2,7 @@ import { ViewIcon } from "@chakra-ui/icons";
 import { Badge, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
-import { Person } from "../../common/types";
+import { Person } from "../../types";
 import {
   PersonGridContainer,
   PersonGridInfo,

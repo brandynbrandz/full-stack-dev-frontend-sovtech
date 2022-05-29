@@ -1,5 +1,5 @@
 import React from "react";
-import { Person } from "../../common/types";
+import { Person } from "../../types";
 import PersonGrid from "../PersonGrid";
 import { PeopleCardWrapper, PeopleGridContainer } from "./styles";
 

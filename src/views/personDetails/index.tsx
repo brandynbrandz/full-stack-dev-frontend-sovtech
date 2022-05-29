@@ -1,8 +1,8 @@
 import React from "react";
-import { GET_PERSON_QUERY } from "../../schemas";
+import { GET_PERSON_QUERY } from "../../graphql/query";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { Person } from "../../common/types";
+import { Person } from "../../types";
 import { useState } from "react";
 import {
   Badge,

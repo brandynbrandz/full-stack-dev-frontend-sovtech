@@ -1,6 +1,6 @@
 import React from "react";
 import PeopleGrid from "../../components/PeopleGrid";
-import { GET_ALL_PEOPLE_QUERY } from "../../schemas";
+import { GET_ALL_PEOPLE_QUERY } from "../../graphql/query";
 import { useQuery } from "@apollo/client";
 import { useState } from "react";
 import PaginationComp from "../../components/Pagination";

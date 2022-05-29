@@ -2,12 +2,12 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import HomePage from "./pages/home";
-import PersonDetailsPage from "./pages/personDetails";
+import HomePage from "./views/home";
+import PersonDetailsPage from "./views/personDetails";
 import GlobalStyle from "./common/styles/global";
 import { ApolloProvider } from "@apollo/client";
-import client from "./common/apollo-client";
-import SearchPersonPage from "./pages/searchPerson";
+import client from "./graphql/client";
+import SearchPersonPage from "./views/searchPerson";
 
 const App: React.FC = () => {
   return (

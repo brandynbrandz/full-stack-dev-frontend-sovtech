@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import PeopleSkeleton from "../../components/LoadingSkeleton/PeopleSkeleton";
 import PaginationComp from "../../components/Pagination";
 import PeopleGrid from "../../components/PeopleGrid";
-import { GET_PERSON_QUERY } from "../../schemas";
+import { GET_PERSON_QUERY } from "../../graphql/query";
 
 const SearchPersonPage = () => {
   const { name } = useParams();

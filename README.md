@@ -4,13 +4,13 @@
 
 # Technologies
 
-### Backend
+### Frontend
 
 - React
 - React Apollo
 - React Hooks
-- React Context
-- State Management
+- GraphQL
+- Styled Components
 
 # Accessing
 
