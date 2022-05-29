@@ -1,6 +1,6 @@
 # Sov-Swapi
 
-- A task by sovtech
+- A task by sovtech. [DEMO](https://2tfg2c.csb.app/)
 
 # Technologies
 
