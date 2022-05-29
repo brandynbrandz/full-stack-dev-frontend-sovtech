@@ -7,7 +7,8 @@
 ### Frontend
 
 - React
-- React Apollo
+- Apollo
+- Typescript
 - React Hooks
 - GraphQL
 - Styled Components
